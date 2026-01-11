@@ -34,23 +34,24 @@ const authenticationController = {
   login: (req, res) => {
     const { email, password } = req.body;
 
-    const findEmail = users.find((user) => user.email === email);
+    const user = users.find((user) => user.email === email);
 
-    if (!findEmail) {
-      return res.status(400).json({ message: "Invalid Credentials." });
-    }
-
-    const findPassword = users.find((user) => user.password !== password);
-
-    if (!findPassword) {
+    if (!user || user.password !== password) {
       return res.status(401).json({ message: "Invalid Credentials" });
     }
 
-    const payload = { id, name, email, role };
-
+    const payload = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    };
     const token = jwt.sign(payload, secretKey, { expiresIn: "1h" });
 
-    res.json({ token });
+    res.json({
+      message: "Login successful!",
+      token,
+    });
   },
 };
 
