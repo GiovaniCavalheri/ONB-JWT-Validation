@@ -3,14 +3,14 @@ const users = [
     id: 1,
     name: "Giovani Cavalheri",
     email: "developer.cavalheri@gmail.com",
-    password: "1234",
+    password: "GiovaniCAVALHERI",
     role: "admin",
   },
   {
     id: 2,
     name: "Giovani Cavalheri",
-    email: "developer.cavalheri@gmail.com",
-    password: "1234",
+    email: "developer.12cavalheri@gmail.com",
+    password: "GiovaniCAVALHERI1",
     role: "standard",
   },
 ];

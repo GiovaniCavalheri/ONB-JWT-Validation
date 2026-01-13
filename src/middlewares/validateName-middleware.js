@@ -6,6 +6,7 @@ const validadeNameMiddleware = (req, res, next) => {
       message: "Name is Invalid",
     });
   }
+  next();
 };
 
 module.exports = validadeNameMiddleware; 

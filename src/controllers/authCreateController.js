@@ -1,7 +1,5 @@
 const jwt = require("jsonwebtoken");
-
 const users = require("../models/users");
-
 const secretKey = "vegeta-is-better-than-Goku";
 
 const authenticationController = {
@@ -46,11 +44,26 @@ const authenticationController = {
       email: user.email,
       role: user.role,
     };
-    const token = jwt.sign(payload, secretKey, { expiresIn: "1h" });
+    try {
+      const token = jwt.sign(payload, secretKey, { expiresIn: "1h" });
+      res.json({
+        message: "Login successful!",
+        token,
+      });
+    } catch (error) {
+      console.error("Erro ao gerar token:", error);
+      res.status(500).json({ message: "Error generating token" });
+    }
 
     res.json({
       message: "Login successful!",
       token,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
     });
   },
 };

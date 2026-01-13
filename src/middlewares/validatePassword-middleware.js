@@ -1,15 +1,17 @@
 const validaPasswordMiddleware = (req, res, next) => {
-    const { password } = req.body; 
+  const { password } = req.body;
 
-    if(!password) {
-        return res.status(400).json({ message: 'Password is Required!' });
-    }
+  if (!password) {
+    return res.status(400).json({ message: "Password is Required!" });
+  }
 
-    if(password.length < 12) {
-        return res.status(400).json({ message: 'The password length is incorrect!' })
-    }
+  if (password.length < 12) {
+    return res
+      .status(400)
+      .json({ message: "The password length is incorrect!" });
+  }
 
-    next();
+  next();
 };
 
 module.exports = validaPasswordMiddleware;
