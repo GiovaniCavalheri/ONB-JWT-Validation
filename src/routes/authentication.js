@@ -8,9 +8,13 @@ const validadeNameMiddleware = require("../middlewares/validateName-middleware")
 const validaPasswordMiddleware = require("../middlewares/validatePassword-middleware");
 const authMiddleware = require("../middlewares/authMiddleware");
 const isAdminMiddleware = require("../middlewares/isAdmin-middleware");
+const welcomeController = require("../controllers/welcomeController");
 
-authentication.get(
-  "/admin/test",
+
+authentication.get("/welcome", welcomeController);
+
+
+authentication.get("/admin/test",
   authMiddleware,
   isAdminMiddleware,
   (req, res) => {
@@ -18,8 +22,7 @@ authentication.get(
   }
 );
 
-authentication.post(
-  "/register",
+authentication.post("/register",
   validateEmailMiddleware,
   validadeNameMiddleware,
   validaPasswordMiddleware,
